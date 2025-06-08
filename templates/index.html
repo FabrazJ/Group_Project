@@ -1,0 +1,17 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MiniMarket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>🛒 Catálogo de Productos</h1>
+    <ul>
+        {% for id, p in catalogo.items() %}
+        <li>{{ p.name }} - ${{ p.price }} <a href="{{ url_for('add', id=p.id) }}">[Agregar]</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('cart') }}">Ver Carrito</a>
+</body>
+</html>

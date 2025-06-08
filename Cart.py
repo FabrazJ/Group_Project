@@ -1,14 +1,10 @@
 # cart.py
 
-from product import Product
-
 class Cart:
     def __init__(self):
         self.items = []
 
-    def add(self, product: Product, quantity=1):
-        if quantity <= 0:
-            raise ValueError("Quantity must be at least 1.")
+    def add(self, product, quantity=1):
         self.items.append((product, quantity))
 
     def total(self):
@@ -16,3 +12,6 @@ class Cart:
 
     def clear(self):
         self.items = []
+
+    def get_items(self):
+        return self.items

@@ -1,8 +1,7 @@
 # product.py
 
 class Product:
-    def __init__(self, name, price):
-        if price < 0:
-            raise ValueError("Price cannot be negative.")
+    def __init__(self, id, name, price):
+        self.id = id
         self.name = name
         self.price = price
