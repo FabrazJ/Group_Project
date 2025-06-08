@@ -50,5 +50,21 @@ def agregar_producto():
         catalogo[id] = Product(id, name, price, stock)
     return redirect(url_for('admin'))
 
+@app.route('/admin/eliminar/<id>')
+def eliminar_producto(id):
+    if id in catalogo:
+        del catalogo[id]
+    return redirect(url_for('admin'))
+
+@app.route('/admin/modificar', methods=['POST'])
+def modificar_producto():
+    id = request.form['id']
+    if id in catalogo:
+        catalogo[id].name = request.form['name']
+        catalogo[id].price = float(request.form['price'])
+        catalogo[id].stock = int(request.form['stock'])
+    return redirect(url_for('admin'))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
