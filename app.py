@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from product import Product
-from cart import Cart
+from Cart import Cart
 
 app = Flask(__name__)
 carrito = Cart()
