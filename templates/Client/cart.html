@@ -7,7 +7,8 @@
 </head>
 <body>
 <div class="container">
-    <h1>Carrito</h1>
+    <h1>Carrito de Compras</h1>
+
     {% if items %}
     <table>
         <thead>
@@ -27,14 +28,17 @@
             {% endfor %}
         </tbody>
     </table>
+
     <p class="total"><strong>Total: ${{ "%.2f"|format(total) }}</strong></p>
+
     <div class="actions">
-        <a href="{{ url_for('clear') }}" class="btn">Vaciar Carrito</a>
-        <a href="{{ url_for('client') }}" class="btn primary">Seguir Comprando</a>
+        <a href="{{ url_for('vaciar') }}" class="btn">Vaciar Carrito</a>
+        <a href="{{ url_for('cliente') }}" class="btn primary">Seguir Comprando</a>
     </div>
+
     {% else %}
         <p>El carrito está vacío.</p>
-        <a href="{{ url_for('client') }}" class="btn primary">Volver al catálogo</a>
+        <a href="{{ url_for('cliente') }}" class="btn primary">Volver al catálogo</a>
     {% endif %}
 </div>
 </body>

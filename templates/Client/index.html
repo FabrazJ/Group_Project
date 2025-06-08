@@ -7,12 +7,13 @@
 </head>
 <body>
 <div class="container">
-    <h1>Catálogo</h1>
+    <h1>Catálogo de Productos</h1>
     <table>
         <thead>
             <tr>
                 <th>Producto</th>
                 <th>Precio</th>
+                <th>Stock</th>
                 <th></th>
             </tr>
         </thead>
@@ -21,11 +22,19 @@
             <tr>
                 <td>{{ p.name }}</td>
                 <td>${{ "%.2f"|format(p.price) }}</td>
-                <td><a href="{{ url_for('agregar', id=p.id) }}" class="btn">Agregar</a></td>
+                <td>{{ p.stock }}</td>
+                <td>
+                    {% if p.stock > 0 %}
+                        <a href="{{ url_for('agregar', id=p.id) }}" class="btn">Agregar</a>
+                    {% else %}
+                        <span style="color: red;">Agotado</span>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
     <div class="actions">
         <a href="{{ url_for('carrito_view') }}" class="btn primary">Ver Carrito</a>
     </div>

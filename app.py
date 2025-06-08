@@ -27,11 +27,17 @@ def cliente():
 def carrito_view():
     return render_template('Client/cart.html', items=carrito.get_items(), total=carrito.total())
 
-@app.route('/agregar/<id>')
-def agregar(id):
-    if id in catalogo:
-        carrito.add(catalogo[id])
+@app.route('/agregar', methods=['POST'])
+def agregar():
+    id = request.form['id']
+    cantidad = int(request.form['cantidad'])
+
+    if id in catalogo and catalogo[id].stock >= cantidad:
+        for _ in range(cantidad):
+            carrito.add(catalogo[id])
+        catalogo[id].stock -= cantidad  # Resta del stock
     return redirect(url_for('cliente'))
+
 
 @app.route('/vaciar')
 def vaciar():
