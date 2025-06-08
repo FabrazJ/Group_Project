@@ -11,6 +11,10 @@ catalogo = {
     "3": Product("3", "Agua", 0.75)
 }
 
+@app.route('/')
+def home():
+    return render_template('home.html')
+
 @app.route('/admin')
 def admin():
     return render_template('Admin/dashboard.html', catalogo=catalogo)
@@ -33,6 +37,3 @@ def agregar(id):
 def vaciar():
     carrito.clear()
     return redirect(url_for('carrito_view'))
-
-if __name__ == '__main__':
-    app.run(debug=True)

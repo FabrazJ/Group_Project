@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MiniMarket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido al MiniMarket</h1>
+        <div class="actions">
+            <a href="{{ url_for('cliente') }}" class="btn primary">Entrar como Cliente</a>
+            <a href="{{ url_for('admin') }}" class="btn">Entrar como Administrador</a>
+        </div>
+    </div>
+</body>
+</html>
