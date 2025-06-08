@@ -1,17 +1,36 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>MiniMarket</title>
+    <meta charset="UTF-8">
+    <title>MiniMarket - Catálogo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>🛒 Catálogo de Productos</h1>
-    <ul>
-        {% for id, p in catalogo.items() %}
-        <li>{{ p.name }} - ${{ p.price }} <a href="{{ url_for('add', id=p.id) }}">[Agregar]</a></li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('cart') }}">Ver Carrito</a>
+    <div class="container">
+        <h1>Catálogo de Productos</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for id, p in catalogo.items() %}
+                <tr>
+                    <td>{{ p.name }}</td>
+                    <td>${{ "%.2f"|format(p.price) }}</td>
+                    <td><a href="{{ url_for('add', id=p.id) }}" class="btn">Agregar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="actions">
+            <a href="{{ url_for('cart') }}" class="btn primary">Ver Carrito</a>
+        </div>
+    </div>
 </body>
 </html>

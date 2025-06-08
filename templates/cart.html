@@ -1,23 +1,46 @@
-<!-- templates/cart.html -->
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Carrito</title>
+    <meta charset="UTF-8">
+    <title>MiniMarket - Carrito</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>🧾 Carrito de Compras</h1>
-    {% if items %}
-        <ul>
-            {% for p, q in items %}
-            <li>{{ q }} x {{ p.name }} = ${{ "%.2f"|format(p.price * q) }}</li>
-            {% endfor %}
-        </ul>
-        <p><strong>Total: ${{ "%.2f"|format(total) }}</strong></p>
-        <a href="{{ url_for('clear') }}">Vaciar Carrito</a>
-    {% else %}
-        <p>El carrito está vacío.</p>
-    {% endif %}
-    <br>
-    <a href="{{ url_for('index') }}">Volver al catálogo</a>
+    <div class="container">
+        <h1>Carrito de Compras</h1>
+
+        {% if items %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cantidad</th>
+                        <th>Producto</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p, q in items %}
+                    <tr>
+                        <td>{{ q }}</td>
+                        <td>{{ p.name }}</td>
+                        <td>${{ "%.2f"|format(p.price * q) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <p class="total"><strong>Total a pagar: ${{ "%.2f"|format(total) }}</strong></p>
+
+            <div class="actions">
+                <a href="{{ url_for('clear') }}" class="btn">Vaciar Carrito</a>
+                <a href="{{ url_for('index') }}" class="btn primary">Seguir Comprando</a>
+            </div>
+        {% else %}
+            <p>Tu carrito está vacío.</p>
+            <div class="actions">
+                <a href="{{ url_for('index') }}" class="btn primary">Volver al Catálogo</a>
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>
