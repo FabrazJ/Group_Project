@@ -37,3 +37,18 @@ def agregar(id):
 def vaciar():
     carrito.clear()
     return redirect(url_for('carrito_view'))
+
+
+@app.route('/admin/agregar', methods=['POST'])
+def agregar_producto():
+    id = request.form['id']
+    name = request.form['name']
+    price = float(request.form['price'])
+    stock = int(request.form['stock'])
+
+    if id not in catalogo:
+        catalogo[id] = Product(id, name, price, stock)
+    return redirect(url_for('admin'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
