@@ -21,13 +21,13 @@
             <tr>
                 <td>{{ p.name }}</td>
                 <td>${{ "%.2f"|format(p.price) }}</td>
-                <td><a href="{{ url_for('add', id=p.id) }}" class="btn">Agregar</a></td>
+                <td><a href="{{ url_for('agregar', id=p.id) }}" class="btn">Agregar</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     <div class="actions">
-        <a href="{{ url_for('cart') }}" class="btn primary">Ver Carrito</a>
+        <a href="{{ url_for('carrito_view') }}" class="btn primary">Ver Carrito</a>
     </div>
 </div>
 </body>
